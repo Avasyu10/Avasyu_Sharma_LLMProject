@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  web:
+    build:
+      context: .  # Build context is the project root
+      dockerfile: Dockerfile # Dockerfile path relative to context
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    depends_on:
+      - mongo
+    environment:
+      - FLASK_APP=app.main # Changed to app.main
+      - FLASK_ENV=development
+      - MONGO_URI=mongodb+srv://avasyu1510:P5pXnfyHOcY7ePZR@cluster0.q1lrltq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+      - MONGO_DB_NAME=rag_db
+      - HUGGING_FACE_TOKEN=${HUGGING_FACE_TOKEN} # Use environment variable
+  mongo:
+    image: "mongo:latest"
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+volumes:
+  mongo-data:

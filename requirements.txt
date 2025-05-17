@@ -1,0 +1,9 @@
+Flask
+pymongo
+python-dotenv
+PyPDF2
+langchain
+sentence-transformers
+chromadb
+requests
+flask_testing
